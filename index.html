@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechFlow - Innovation Made Simple</title>
+    <title>To-Do List App</title>
     <style>
         * {
             margin: 0;
@@ -13,181 +13,244 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        /* Header Styles */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
+            color: white;
+            padding: 30px;
+            text-align: center;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .input-section {
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        #taskInput {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #taskInput:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        #addBtn {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        #addBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        #addBtn:active {
+            transform: translateY(0);
+        }
+
+        .task-counter {
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .tasks-section {
+            padding: 0 30px 30px;
+        }
+
+        .tasks-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            margin-bottom: 20px;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo::before {
-            content: "⚡";
-            font-size: 2rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-menu li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-menu li a:hover {
-            transform: translateY(-2px);
-        }
-
-        .nav-menu li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: white;
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu li a:hover::after {
-            width: 100%;
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
+        .tasks-header h2 {
+            color: #495057;
             font-size: 1.5rem;
-            cursor: pointer;
+            font-weight: 500;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        .clear-completed {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .clear-completed:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+        }
+
+        #taskList {
+            list-style: none;
+        }
+
+        .task-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        .hero-content {
-            max-width: 800px;
-            padding: 2rem;
-            z-index: 2;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            line-height: 1.7;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
+            gap: 15px;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(238, 90, 36, 0.3);
-            animation: fadeInUp 1s ease-out 0.6s both;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .task-item.completed {
+            opacity: 0.7;
+            background: #f8f9fa;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #667eea;
+            cursor: pointer;
             position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .cta-button::before {
-            content: '';
+        .task-checkbox.checked {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .task-checkbox.checked::after {
+            content: '✓';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
         }
 
-        .cta-button:hover::before {
-            left: 100%;
+        .task-text {
+            flex: 1;
+            font-size: 1.1rem;
+            color: #495057;
+            transition: all 0.3s ease;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(238, 90, 36, 0.4);
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: #6c757d;
         }
 
-        @keyframes fadeInUp {
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .delete-btn:hover {
+            opacity: 1;
+            background: #c82333;
+            transform: scale(1.05);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6c757d;
+        }
+
+        .empty-state img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .fade-out {
+            animation: fadeOut 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -195,335 +258,225 @@
             }
         }
 
-        /* Features Section */
-        .features {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.8);
+            }
         }
 
-        .features-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Footer */
-        .footer {
-            background: #2c3e50;
-            color: white;
-            padding: 3rem 2rem 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #ecf0f1;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: #bdc3c7;
-            text-decoration: none;
-            line-height: 1.6;
-        }
-
-        .footer-section a:hover {
-            color: #3498db;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: #3498db;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: #2980b9;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #34495e;
-            padding-top: 1rem;
-            color: #95a5a6;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background: rgba(102, 126, 234, 0.95);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                backdrop-filter: blur(10px);
-                padding: 2rem 0;
+            .container {
+                margin: 10px;
+                border-radius: 10px;
             }
 
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-toggle {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .hero-content {
-                padding: 1rem;
-            }
-
-            .features {
-                padding: 3rem 1rem;
-            }
-
-            .features-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
+            .header h1 {
                 font-size: 2rem;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .input-section {
+                padding: 20px;
             }
 
-            .cta-button {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
+            .input-container {
+                flex-direction: column;
             }
 
-            .feature-card {
-                padding: 1.5rem;
+            #addBtn {
+                width: 100%;
+            }
+
+            .tasks-section {
+                padding: 0 20px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="nav-container">
-            <a href="#" class="logo">TechFlow</a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
-            </nav>
-            <button class="nav-toggle">☰</button>
+    <div class="container">
+        <div class="header">
+            <h1>My To-Do List</h1>
+            <p>Stay organized and get things done!</p>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Innovation Made Simple</h1>
-            <p>Transform your business with cutting-edge technology solutions that drive growth, efficiency, and success. Join thousands of companies already revolutionizing their operations.</p>
-            <a href="#features" class="cta-button">Get Started Today</a>
+        <div class="input-section">
+            <div class="input-container">
+                <input type="text" id="taskInput" placeholder="What needs to be done?" maxlength="100">
+                <button id="addBtn">Add Task</button>
+            </div>
+            <div class="task-counter">
+                <span id="taskCounter">0 tasks remaining</span>
+            </div>
         </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="features-container">
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>Lightning Fast</h3>
-                <p>Experience blazing-fast performance with our optimized solutions that deliver results in record time.</p>
+        <div class="tasks-section">
+            <div class="tasks-header">
+                <h2>Your Tasks</h2>
+                <button class="clear-completed" id="clearCompleted" style="display: none;">Clear Completed</button>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Secure & Reliable</h3>
-                <p>Your data is protected with enterprise-grade security and 99.9% uptime guarantee.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3>Mobile Ready</h3>
-                <p>Access your tools anywhere, anytime with our fully responsive and mobile-optimized platform.</p>
+            <ul id="taskList"></ul>
+            
+            <div class="empty-state" id="emptyState">
+                <div style="font-size: 4rem; margin-bottom: 20px;">📝</div>
+                <h3>No tasks yet</h3>
+                <p>Add a task above to get started!</p>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About TechFlow</h3>
-                <p>Leading the digital transformation with innovative solutions that empower businesses to thrive in the modern world.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="#home">Home</a></p>
-                <p><a href="#features">Features</a></p>
-                <p><a href="#about">About</a></p>
-                <p><a href="#contact">Contact</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <p>Email: hello@techflow.com</p>
-                <p>Phone: (555) 123-4567</p>
-                <p>Address: 123 Tech Street, Innovation City</p>
-            </div>
-        </div>
-        <div class="social-links">
-            <a href="#" title="Facebook">📘</a>
-            <a href="#" title="Twitter">🐦</a>
-            <a href="#" title="LinkedIn">💼</a>
-            <a href="#" title="Instagram">📷</a>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 TechFlow. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Mobile navigation toggle
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(102, 126, 234, 0.95)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        class TodoApp {
+            constructor() {
+                this.tasks = [];
+                this.taskIdCounter = 0;
+                this.initElements();
+                this.bindEvents();
+                this.updateDisplay();
             }
-        });
 
-        // Animate feature cards on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+            initElements() {
+                this.taskInput = document.getElementById('taskInput');
+                this.addBtn = document.getElementById('addBtn');
+                this.taskList = document.getElementById('taskList');
+                this.taskCounter = document.getElementById('taskCounter');
+                this.clearCompleted = document.getElementById('clearCompleted');
+                this.emptyState = document.getElementById('emptyState');
+            }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            bindEvents() {
+                // Add task events
+                this.addBtn.addEventListener('click', () => this.addTask());
+                this.taskInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.addTask();
+                });
+
+                // Clear completed tasks
+                this.clearCompleted.addEventListener('click', () => this.clearCompletedTasks());
+
+                // Focus input on page load
+                window.addEventListener('load', () => this.taskInput.focus());
+            }
+
+            addTask() {
+                const taskText = this.taskInput.value.trim();
+                
+                if (taskText === '') {
+                    this.shakeInput();
+                    return;
                 }
-            });
-        }, observerOptions);
 
-        document.querySelectorAll('.feature-card').forEach(card => {
-            observer.observe(card);
-        });
+                const task = {
+                    id: ++this.taskIdCounter,
+                    text: taskText,
+                    completed: false,
+                    createdAt: new Date()
+                };
+
+                this.tasks.unshift(task); // Add to beginning for newest first
+                this.taskInput.value = '';
+                this.updateDisplay();
+                
+                // Add success feedback
+                this.addBtn.style.background = '#28a745';
+                setTimeout(() => {
+                    this.addBtn.style.background = '';
+                }, 300);
+            }
+
+            toggleTask(taskId) {
+                const task = this.tasks.find(t => t.id === taskId);
+                if (task) {
+                    task.completed = !task.completed;
+                    this.updateDisplay();
+                }
+            }
+
+            deleteTask(taskId) {
+                const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
+                if (taskElement) {
+                    taskElement.classList.add('fade-out');
+                    setTimeout(() => {
+                        this.tasks = this.tasks.filter(t => t.id !== taskId);
+                        this.updateDisplay();
+                    }, 300);
+                }
+            }
+
+            clearCompletedTasks() {
+                if (confirm('Are you sure you want to delete all completed tasks?')) {
+                    this.tasks = this.tasks.filter(t => !t.completed);
+                    this.updateDisplay();
+                }
+            }
+
+            updateDisplay() {
+                this.renderTasks();
+                this.updateCounter();
+                this.updateClearButton();
+            }
+
+            renderTasks() {
+                if (this.tasks.length === 0) {
+                    this.taskList.innerHTML = '';
+                    this.emptyState.style.display = 'block';
+                    return;
+                }
+
+                this.emptyState.style.display = 'none';
+                
+                this.taskList.innerHTML = this.tasks.map(task => `
+                    <li class="task-item fade-in ${task.completed ? 'completed' : ''}" data-task-id="${task.id}">
+                        <div class="task-checkbox ${task.completed ? 'checked' : ''}" 
+                             onclick="todoApp.toggleTask(${task.id})"></div>
+                        <span class="task-text">${this.escapeHtml(task.text)}</span>
+                        <button class="delete-btn" onclick="todoApp.deleteTask(${task.id})">Delete</button>
+                    </li>
+                `).join('');
+            }
+
+            updateCounter() {
+                const remaining = this.tasks.filter(t => !t.completed).length;
+                const total = this.tasks.length;
+                
+                if (total === 0) {
+                    this.taskCounter.textContent = 'No tasks';
+                } else if (remaining === 0) {
+                    this.taskCounter.textContent = 'All tasks completed! 🎉';
+                } else {
+                    this.taskCounter.textContent = `${remaining} of ${total} tasks remaining`;
+                }
+            }
+
+            updateClearButton() {
+                const hasCompleted = this.tasks.some(t => t.completed);
+                this.clearCompleted.style.display = hasCompleted ? 'block' : 'none';
+            }
+
+            shakeInput() {
+                this.taskInput.style.animation = 'none';
+                this.taskInput.style.borderColor = '#dc3545';
+                this.taskInput.placeholder = 'Please enter a task!';
+                
+                setTimeout(() => {
+                    this.taskInput.style.borderColor = '';
+                    this.taskInput.placeholder = 'What needs to be done?';
+                }, 1500);
+            }
+
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        }
+
+        // Initialize the app
+        const todoApp = new TodoApp();
     </script>
 </body>
 </html>
