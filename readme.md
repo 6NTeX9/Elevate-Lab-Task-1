@@ -66,7 +66,7 @@ The `index.html` file contains:
 ### Preview 
 ![App Screenshot]
 !https://github.com/6NTeX9/Elevate-Lab-Task-1/blob/main/IMG-20250922-WA0007.jpg
-
+https://github.com/user-attachments/assets/25164725-2654-490c-b8bc-d87f5a876e8b
 ## 🔧 Technical Details
 
 ### Performance Features
@@ -102,6 +102,6 @@ This project is open source and available under the [MIT License](LICENSE).
 **Happy coding!** 🎉
 
 *Built with ❤️ using HTML, CSS, and JavaScript*
-<img width="1710" height="1112" alt="Screenshot 2025-09-22 at 7 02 49 PM" src="https://github.com/user-attachments/assets/25164725-2654-490c-b8bc-d87f5a876e8b" />
+<img width="1710" height="1112" alt="Screenshot 2025-09-22 at 7 02 49 PM" src="" />
 <img width="1710" height="1112" alt="Screenshot 2025-09-22 at 7 02 56 PM" src="https://github.com/user-attachments/assets/a393ffd0-802c-4608-809f-19acc7b1febf" />
 
