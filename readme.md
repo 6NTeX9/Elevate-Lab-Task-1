@@ -66,6 +66,7 @@ The `index.html` file contains:
 ### Preview 
 ![App Screenshot]
 !https://github.com/6NTeX9/Elevate-Lab-Task-1/blob/main/IMG-20250922-WA0007.jpg
+IMG-20250922-WA0007.jpg
 
 ## 🔧 Technical Details
 
