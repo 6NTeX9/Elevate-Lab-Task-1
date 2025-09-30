@@ -64,7 +64,7 @@ The `index.html` file contains:
 4. **Footer** - Update contact information and links
 
 ### Preview 
-![App Screenshots] IMG-20250922-WA0007.jpg
+![App Screenshot]
 
 
 ## 🔧 Technical Details
