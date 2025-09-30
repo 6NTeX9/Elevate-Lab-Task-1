@@ -63,8 +63,8 @@ The `index.html` file contains:
 3. **Features** - Change icons, titles, and descriptions
 4. **Footer** - Update contact information and links
 
-### Screenshots
-IMG-20250922-WA0007.jpg
+### Preview 
+![App Screenshots] IMG-20250922-WA0007.jpg
 
 
 ## 🔧 Technical Details
