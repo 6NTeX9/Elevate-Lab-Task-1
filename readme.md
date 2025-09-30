@@ -16,20 +16,12 @@ A modern, fully responsive landing page built with HTML, CSS, and vanilla JavaSc
 
 - [Demo](#demo)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Structure](#structure)
 - [Customization](#customization)
 - [Browser Support](#browser-support)
 - [Contributing](#contributing)
 - [License](#license)
 
-## 🎯 Demo
-
-The landing page includes:
-- **Header** - Fixed navigation with logo and menu
-- **Hero Section** - Eye-catching headline with call-to-action
-- **Features Section** - Three feature cards with icons
-- **Footer** - Contact information and social links
 
 ## 💻 Installation
 
@@ -56,10 +48,7 @@ landing-page/
 │
 ├── index.html          # Main HTML file (contains CSS and JS inline)
 ├── README.md          # This documentation file
-└── assets/            # (Optional) For additional assets
-    ├── images/        # Image files
-    ├── icons/         # Icon files
-    └── fonts/         # Custom fonts
+└── assets/            # Additional like screenshots
 ```
 
 ### Code Structure
@@ -74,21 +63,9 @@ The `index.html` file contains:
 3. **Features** - Change icons, titles, and descriptions
 4. **Footer** - Update contact information and links
 
-## 📱 Browser Support
+### Screenshots
+IMG-20250922-WA0007.jpg
 
-| Browser | Version |
-|---------|---------|
-| Chrome | 60+ |
-| Firefox | 60+ |
-| Safari | 12+ |
-| Edge | 79+ |
-| Opera | 47+ |
-
-### Features Used
-- CSS Grid and Flexbox
-- CSS Custom Properties
-- Intersection Observer API
-- Modern JavaScript (ES6+)
 
 ## 🔧 Technical Details
 
@@ -97,14 +74,6 @@ The `index.html` file contains:
 - **Vanilla JavaScript** - No external dependencies
 - **Inline Assets** - All code in single file for fast loading
 - **Smooth Animations** - Hardware-accelerated transforms
-
-## 🚀 Deployment
-
-### Static Hosting Options
-- **GitHub Pages** - Free hosting for static sites
-- **Netlify** - Drag and drop deployment
-- **Vercel** - Zero-config deployments
-- **Firebase Hosting** - Google's hosting platform
 
 ### Quick Deploy to Netlify
 1. Create account at netlify.com
